@@ -1,0 +1,37 @@
+// COMServer.idl : IDL-Quelle für COMServer
+//
+
+// Diese Datei wird mit dem MIDL-Tool bearbeitet,
+// um den Quellcode für die Typbibliothek (COMServer.tlb) und die Abruffunktionen zu erstellen.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(3A25EAE3-D61C-4F3D-876E-FB4484215A43),
+	dual,
+	nonextensible,
+	helpstring("IServerWrapper-Schnittstelle"),
+	pointer_default(unique)
+]
+interface IServerWrapper : IDispatch{
+	[id(1), helpstring("Wrapper for GetTemperature method Server.DLL"), helpcontext(1)] HRESULT GetTemperature([out,retval] SHORT* temperature);
+};
+[
+	uuid(D8512517-560A-4353-A3AC-7D1CFE81505A),
+	version(1.0),
+	helpstring("COMServer 1.0-Typbibliothek")
+]
+library COMServerLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(AE14D6C6-2E7E-484D-A621-E62611B75B42),
+		helpstring("ServerWrapper Class")
+	]
+	coclass ServerWrapper
+	{
+		[default] interface IServerWrapper;
+	};
+};
