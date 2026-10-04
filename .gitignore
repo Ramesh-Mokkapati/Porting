@@ -1,0 +1,71 @@
+# ============================================================
+# Visual Studio
+# ============================================================
+
+# Per-user settings (machine-specific paths, breakpoints, etc.)
+*.user
+*.suo
+.vs/
+
+# Source-control plugin metadata (SourceSafe / Team Foundation)
+*.vspscc
+*.vssscc
+
+# Resource editor binary scratch file (auto-regenerated from .rc)
+*.aps
+
+# Old VS2008 project format — VS2022 uses .vcxproj
+*.vcproj
+*.vcproj.BK.*
+
+# ============================================================
+# MSBuild output — all configurations and platforms
+# ============================================================
+
+# Top-level solution output (Server.dll, Client.exe, etc.)
+/Debug/
+/Release/
+/x64/
+
+# Per-project intermediate and output directories
+**/Debug/
+**/Release/
+**/x64/
+
+# COMServerPS proxy/stub output directories (non-standard names)
+**/DebugPS/
+**/ReleasePS/
+
+# PortAssist binary output
+/Binaries/
+
+# ============================================================
+# Compiled / linked artifacts (catch-all for stray files)
+# ============================================================
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.dll
+*.exe
+*.recipe
+*.log
+*.tlog
+*.idb
+*.ipdb
+*.iobj
+*.FileListAbsolute.txt
+*.Build.CppClean.log
+
+# Precompiled headers
+*.pch
+*.gch
+
+# ============================================================
+# Windows / OS
+# ============================================================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
