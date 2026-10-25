@@ -4,6 +4,50 @@ A Visual Studio 2022 solution demonstrating two complementary approaches to port
 
 ---
 
+## Screenshots
+
+| PortAssist | Genie |
+|---|---|
+| ![PortAssist with the Unicode Porting and x64 Porting tabs, the source folder, file patterns and the Save Backup / Overwrite options](docs/screenshots/portassist.png) | ![Genie with the source folder, file patterns and the Save Backup / Overwrite options](docs/screenshots/genie.png) |
+
+PortAssist reports how many files it changed:
+
+![PortAssist result: Unicode transformation completed, 1 file modified, 0 failed](docs/screenshots/portassist-result.png)
+
+That run, on a small legacy file with **Save Backup** selected, made these changes (the original is kept as
+`LegacyReport.cpp.bak`). PortAssist leaves string literals as they are; Genie also wraps them in `_T()`.
+
+```diff
+-void WriteHeader(FILE* out, LPCSTR title)
++void WriteHeader(FILE* out, LPCTSTR title)
+ {
+-    char line[128];
+-    strcpy(line, title);
+-    for (size_t i = 0; i < strlen(line); ++i)
+-        line[i] = (char)toupper(line[i]);
+-    fprintf(out, "%s\n", line);
++    TCHAR line[128];
++    _tcscpy(line, title);
++    for (size_t i = 0; i < _tcslen(line); ++i)
++        line[i] = (TCHAR)_totupper(line[i]);
++    _ftprintf(out, "%s\n", line);
+ }
+
+-int CountWords(LPSTR text)
++int CountWords(LPTSTR text)
+ {
+     int words = 0;
+-    for (char* token = strtok(text, " "); token != NULL; token = strtok(NULL, " "))
++    for (TCHAR* token = _tcstok(text, " "); token != NULL; token = _tcstok(NULL, " "))
+         ++words;
+-    printf("Words: %d\n", words);
++    _tprintf("Words: %d\n", words);
+     return words;
+ }
+```
+
+---
+
 ## Solution layout
 
 ```
